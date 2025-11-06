@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Food Explorer & Recipe Share</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="images/logo.png" alt="Logo" class="logo">
+                <div class="header-text">
+                    <h1>Global Food Explorer & Recipe Share</h1>
+                    <p>Discover delicious flavors from around the world and share your culinary experiences</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" onclick="showPage('recipes')" class="nav-link" data-page="recipes">Recipes</a></li>
+                <li><a href="#" onclick="showPage('upload')" class="nav-link" data-page="upload">Upload</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page-content active">
+            <section class="slideshow">
+                <div class="slide-container">
+                    <div class="slide active">
+                        <img src="images/Margherita Pizza.png" alt="Food Image 1">
+                        <div class="slide-text">
+                            <h2>Explore Global Cuisine</h2>
+                            <p>From Asia to Europe, from America to Africa, discover unique flavors from around the world</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/Salmon Sushi Roll.png" alt="Food Image 2">
+                        <div class="slide-text">
+                            <h2>Share Your Recipes</h2>
+                            <p>Upload your favorite dishes and exchange cooking experiences with global food enthusiasts</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/Kung Pao Chicken.png" alt="Food Image 3">
+                        <div class="slide-text">
+                            <h2>Learn Cooking Techniques</h2>
+                            <p>Learn various cooking skills and secrets from professional chefs and home cooks</p>
+                        </div>
+                    </div>
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <h2>Welcome to the Food Explorer Platform</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌍</div>
+                            <h3>Global Cuisine</h3>
+                            <p>Discover specialty dishes from around the world and taste global flavors without leaving home</p>
+                            <a href="#" onclick="showPage('recipes')" class="btn">Start Exploring</a>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <h3>Share Recipes</h3>
+                            <p>Upload your signature dishes and share cooking experiences with food enthusiasts</p>
+                            <a href="#" onclick="showPage('upload')" class="btn">Share Now</a>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>Food Community</h3>
+                            <p>Join our food community and meet like-minded friends</p>
+                            <a href="#" onclick="showPage('about')" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="preview">
+                <div class="container">
+                    <h2>Latest Recipes</h2>
+                    <div class="preview-grid" id="previewGrid"></div>
+                    <div class="text-center">
+                        <a href="#" onclick="showPage('recipes')" class="btn">View More Recipes</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Recipes Page -->
+        <div id="recipes-page" class="page-content">
+            <section class="filters">
+                <div class="container">
+                    <h2>Filter Recipes</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="China">Chinese</button>
+                        <button class="filter-btn" data-filter="Italy">Italian</button>
+                        <button class="filter-btn" data-filter="Japan">Japanese</button>
+                        <button class="filter-btn" data-filter="India">Indian</button>
+                        <button class="filter-btn" data-filter="Mexico">Mexican</button>
+                        <button class="filter-btn" data-filter="France">French</button>
+                        <button class="filter-btn" data-filter="Thailand">Thai</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recipe-grid">
+                <div class="container">
+                    <div class="grid" id="recipeGrid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Upload Page -->
+        <div id="upload-page" class="page-content">
+            <section class="upload-section">
+                <div class="container">
+                    <h2>Share Your Recipe</h2>
+                    <form id="recipeForm">
+                        <div class="form-group">
+                            <label for="recipeCountry">Cuisine</label>
+                            <select id="recipeCountry" required>
+                                <option value="">Please select cuisine</option>
+                                <option value="China">Chinese</option>
+                                <option value="Italy">Italian</option>
+                                <option value="Japan">Japanese</option>
+                                <option value="Mexico">Mexican</option>
+                                <option value="India">Indian</option>
+                                <option value="France">French</option>
+                                <option value="Thailand">Thai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipeTitle">Dish Name</label>
+                            <input type="text" id="recipeTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipeImage">Image URL</label>
+                            <input type="text" id="recipeImage" placeholder="Enter image URL or leave blank to use default image">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipeIngredients">Ingredients</label>
+                            <textarea id="recipeIngredients" rows="4" required placeholder="Please enter ingredients, one per line"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipeSteps">Cooking Steps</label>
+                            <textarea id="recipeSteps" rows="6" required placeholder="Please enter cooking steps, one step per line"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit Recipe</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="page-content">
+            <section class="about-section">
+                <div class="container">
+                    <h2>About Us</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Our Mission</h3>
+                            <p>The Global Food Explorer & Recipe Share platform is dedicated to connecting food enthusiasts from around the world, enabling everyone to discover, learn, and share delicious dishes from different cultures.</p>
+                            
+                            <h3>Our Vision</h3>
+                            <p>We believe that food is a bridge for cultural exchange. By sharing recipes and cooking experiences, we hope to promote understanding and friendship between different cultures.</p>
+                            
+                            <h3>Join Us</h3>
+                            <p>Whether you are a professional chef or a home cooking enthusiast, we welcome you to join our community and share your food stories and unique recipes.</p>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <h3>Contact Us</h3>
+                            <p>📧 Email: info@globalfood.com</p>
+                            <p>📞 Phone: +1 123-456-7890</p>
+                            <p>📍 Address: 88 Food Street, Culinary District, New York, NY</p>
+                            
+                            <div class="social-links">
+                                <h3>Follow Us</h3>
+                                <p>📘 Facebook: @GlobalFoodExplorer</p>
+                                <p>📷 Instagram: @globalfood_recipes</p>
+                                <p>🐦 Twitter: @GlobalFoodShare</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Global Food Explorer & Recipe Share. All rights reserved.</p>
+            <p>Contact us: info@globalfood.com | Phone: +1 123-456-7890</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
